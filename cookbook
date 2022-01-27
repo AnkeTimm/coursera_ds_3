@@ -30,4 +30,4 @@ exchanging them with the spelled out version due to the command gsub().
 
 The final data set 'second_dataset' is created out of 'merged_selected' grouped by activity and subject the mean of all values (180 obs. of 
 88 variables).
-Now you can compaire e.g. the time body accelerometer of all 30 subjects laying.
+Now you can compaire e.g. the time body accelerometer of all 30 subjects going downstairs.

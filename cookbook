@@ -1,0 +1,32 @@
+For clarity, the packages used are loaded first.
+
+An empty destination is created and the link saved as an value. With the funciton 'download.file' the zip is downloaded to the destination. 
+In the next step the zip is unpacked.
+
+The 8 txt-files are loaded in R.
+1. 'feature' : 561 obs. of 2 variables - n : counter, values : measurement names
+2. 'activity' : 6 obs. of 2 variables - id : activity id, activity : activity name
+3. 'subject_test' : 2947 obs. of 1 varaible - subject : subject id
+4. 'x_test' : 2947 obs. of 561 variables - including the feature vales as names - all 561 columns have a name
+5. 'y_test' : 2947 obs. of 1 variable - id : activity id
+6. 'subject_train' : 7352 obs. of 1 varaible - subject : subject id
+7. 'x_train' : 7352 obs. of 561 variables - including the feature vales as names - all 561 columns have a name
+8. 'y_train' : 7352 obs. of 1 variable - id : activity id
+
+The training und test data sets are row bind with the rbind()-command, always first the training set then the test set to secure the sorting.
+Finaly the subject, y (activity) and x (values) are column bind with cbind() to the 'merge' data set - 10299 obs. of 563 variables.
+
+Only the mean and standard diviation values should be used together with the activity and subject, in the further analysis so with select from 
+the dyplr package. To make select the values the names needed to contain 'mean' or 'sd'. This is stored into 'merged_selected'.
+
+To get a descriptive activity name the id column of 'merged_selected' is overwriten with the second column of the activity data set, if the 
+ids are equal.
+The subject is changed to a factor due to this is a person and not a mere number.
+
+The second column name is set to 'activity' directly.
+To set descriptive variable names in the other columns, two list are created that includes the existing abbreviations in the first and spelled 
+out terms in the second. After that a for loop with the length of the lists went through the names, searching for the abbreviations and 
+exchanging them with the spelled out version due to the command gsub().
+
+The final data set 'second_dataset' is created out of 'merged_selected' grouped by activity and subject the mean of all values.
+Now you can compaire e.g. the time body accelerometer of all 30 subjects laying.
